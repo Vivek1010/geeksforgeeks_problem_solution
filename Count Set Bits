@@ -1,0 +1,55 @@
+Given a positive integer N, print count of set bits in it. For example, if the given number is 6, output should be 2 as there are two set bits in it.
+
+Input:
+
+The first line of input contains an integer T denoting the number of test cases. Then T test cases follow. The next T lines will contain an integer N.
+
+Output:
+Corresponding to each test case, in a new line, print count of set bits in it.
+
+Constraints:
+
+1 ≤ T ≤ 100
+
+1 ≤ N ≤ 1000000
+
+
+Example:
+
+Input:
+
+2
+6
+11
+ 
+
+Output:
+2
+3
+-----------------------------------------------------------------
+Solution
+#include <stdio.h>
+
+int main() {
+	//code
+	int t        = 0;    /* no of test cases */
+	int num[100] = {0,}; /* Number to check bits */
+	int i        = 0;
+  int count    = 0;    /* counter for set bits*/
+  int res[100] = {0,}; /* contains resuklts*/
+
+	scanf("%d",&t);
+	for (i =0; i<t;i++){
+		  scanf("%d",&num[i]);
+		  while (num[i]){
+		      	count = count + (num[i] & 1);
+			      num[i]= num[i]>>1;
+		  }
+      res[i] = count;
+      count  = 0; /* reset the counter */
+	}
+  for (i =0; i<t;i++){
+       printf("%d\n",res[i]);
+  }
+  return 0;
+}
