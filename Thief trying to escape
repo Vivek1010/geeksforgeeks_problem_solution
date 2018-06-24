@@ -1,0 +1,67 @@
+A thief trying to escape from a jail has to cross N walls each with varying heights. He climbs X feet every time. But, due to the slippery nature of those walls, every times he slips back by Y feet.  Now the task is to calculate the total number of jumps required to cross all walls and escape from the jail.
+
+Input:
+The first line of input contains an integer T denoting the no of test cases. Then T test cases follow. Each test case contains two space separated integers X, Y, N. Then in the next line are N space separated values denoting the heights ( Ht[] ) of the walls.
+
+Output:
+For each test case in a new line print the total number of jumps.
+
+Constraints:
+1<=T<=100
+1<= N, X, Y <=100
+1<= Ht[] <=1000
+
+Example:
+Input:
+2
+10 1 1
+5
+4 1 5
+6 9 11 4 5 
+
+Output:
+1
+12
+------------------------------------------------------------------------------------------
+#include <stdio.h>
+typedef unsigned char uint8_t;
+int main() {
+
+    uint8_t  t              = 0; /* 1<=T<=100 */
+    uint8_t  up             = 0; /* 1<= N, X, Y <=100 */
+    uint8_t  down           = 0; /* ====='' =========*/
+    uint8_t  w              = 0;
+    uint8_t  no_wall        = 0;
+    unsigned int count      = 1;
+    uint8_t  i,j            = 0;
+    uint8_t  input[3]       = {0,};
+    int      wall[100]      = {0,};
+    unsigned int  res[100]  = {0,};
+
+    scanf("%d",&t);
+    for (i = 0 ; i <t ; i++) {
+        for (j =0; j <3 ; j++){
+            scanf("%d",&input[j]);
+        }
+        up      = input[0];
+        down    = input[1];
+        no_wall = input[2];
+        count   = 0; 
+        for (w = 0;w< no_wall ;w++) {
+            scanf("%d",&wall[w]);
+            while (wall[w] > 0 ) {
+                wall[w] = wall[w] - up;
+                if ( wall[w]> 0 ) {
+                    count++;
+                    wall[w] = wall[w] + down;
+                }
+            }
+            count++;
+        }
+        res[i] = count;
+    }
+    for (w=0; w<t ; w++){
+        printf("%d\n",res[w]);
+    }
+    return (0);
+}       
